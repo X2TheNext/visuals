@@ -174,6 +174,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offse
 <div class="wrap">
 <div class="av-header">
   <span class="av-wordmark">ATCHÉ VISUALS</span>
+  <div style="font-size:10px;color:var(--text3);letter-spacing:2px;margin-top:3px;font-style:italic">{ah-shay}</div>
   <div class="av-sub">Nightlife Photography & Performance Reels</div>
   <div class="av-rule"></div>
   <div class="av-tagline">Washington, DC</div>
@@ -350,7 +351,7 @@ function openGalleryPreview(item){
   document.getElementById('lightboxLoader').classList.add('show');
   const img = document.getElementById('lightboxImg');
   img.style.display = 'none';
-  img.src = item.fullUrl;
+  img.src = item.previewUrl;
   img.onload = () => { document.getElementById('lightboxLoader').classList.remove('show'); img.style.display = ''; };
   document.getElementById('lightboxName').textContent = item.type === 'video' ? 'Reel (poster frame)' : '';
   document.getElementById('lightboxDesc').textContent = '';
