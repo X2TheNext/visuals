@@ -8,7 +8,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@200;300;400;500;600;700&display=swap');
-
 :root {
   --black: #080808;
   --surface: #111111;
@@ -27,67 +26,37 @@
   --rose: #C2697A;
   --t: 0.2s cubic-bezier(0.4,0,0.2,1);
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--black);color:var(--text);min-height:100vh;padding:24px;overflow-x:hidden}
-
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;opacity:0.025;pointer-events:none;z-index:0}
-
-/* AMBIENT BACKGROUND */
 .bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bg-glow{position:absolute;border-radius:50%;filter:blur(50px);will-change:transform}
-.bg-glow-gold{top:-140px;left:50%;width:620px;height:460px;transform:translate(-50%,var(--py1,0px));background:radial-gradient(ellipse at center, rgba(201,168,76,0.16) 0%, transparent 70%);animation:glow-pulse 12s ease-in-out infinite}
-.bg-glow-rose{bottom:-180px;right:-100px;width:520px;height:520px;transform:translateY(var(--py2,0px));background:radial-gradient(ellipse at center, rgba(194,105,122,0.12) 0%, transparent 70%);animation:glow-pulse 14s ease-in-out infinite 2s}
-.bg-glow-sage{top:40%;left:-160px;width:420px;height:420px;transform:translateY(var(--py3,0px));background:radial-gradient(ellipse at center, rgba(107,158,122,0.10) 0%, transparent 70%);animation:glow-pulse 16s ease-in-out infinite 4s}
-.bg-glow-rose2{top:62%;right:-120px;width:360px;height:360px;transform:translateY(calc(var(--py2,0px) * -0.6));background:radial-gradient(ellipse at center, rgba(194,105,122,0.10) 0%, transparent 70%);animation:glow-pulse 13s ease-in-out infinite 6s}
-@keyframes glow-pulse{0%,100%{opacity:0.65;filter:blur(50px)}50%{opacity:1;filter:blur(60px)}}
-.spark{position:absolute;border-radius:50%;background:var(--gold-light);opacity:0;animation:spark-float linear infinite}
-.spark.spark-rose{background:var(--rose)}
-.spark.spark-gold2{background:var(--gold)}
-@keyframes spark-float{
-  0%{opacity:0;transform:translateY(0) scale(0.6)}
-  8%{opacity:0.6}
-  92%{opacity:0.4}
-  100%{opacity:0;transform:translateY(-180px) scale(1)}
-}
-
+.bg-glow-gold{top:-140px;left:50%;width:620px;height:460px;transform:translate(-50%,var(--py1,0px));background:radial-gradient(ellipse at center, rgba(201,168,76,0.16) 0%, transparent 70%)}
+.bg-glow-rose{bottom:-180px;right:-100px;width:520px;height:520px;transform:translateY(var(--py2,0px));background:radial-gradient(ellipse at center, rgba(194,105,122,0.12) 0%, transparent 70%)}
+.bg-glow-sage{top:40%;left:-160px;width:420px;height:420px;transform:translateY(var(--py3,0px));background:radial-gradient(ellipse at center, rgba(107,158,122,0.10) 0%, transparent 70%)}
 .wrap{max-width:640px;margin:0 auto;position:relative;z-index:1}
-
-/* HEADER */
 .av-header{text-align:center;margin-bottom:36px;padding-top:8px;animation:header-in 0.9s cubic-bezier(.16,1,.3,1) both}
-.av-wordmark{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;letter-spacing:8px;display:block;
-  background:linear-gradient(100deg, var(--gold) 25%, var(--gold-light) 50%, var(--gold) 75%);
-  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:wordmark-shine 9s ease-in-out infinite}
+.av-wordmark{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;letter-spacing:8px;display:block;background:linear-gradient(100deg, var(--gold) 25%, var(--gold-light) 50%, var(--gold) 75%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:wordmark-shine 9s ease-in-out infinite}
 .av-sub{font-family:'Playfair Display',serif;font-size:13px;font-weight:400;font-style:italic;color:var(--text2);letter-spacing:3px;margin-top:2px}
 .av-rule{height:1px;background:rgba(201,168,76,0.3);margin:16px auto;width:0;animation:rule-draw 1s 0.35s cubic-bezier(.16,1,.3,1) forwards}
 .av-tagline{font-size:10px;color:var(--text3);letter-spacing:4px;text-transform:uppercase}
-
 @keyframes header-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes wordmark-shine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 @keyframes rule-draw{to{width:48px}}
-
-/* CARD */
 .card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px;position:relative;overflow:hidden;margin-bottom:20px;transition:border-color .5s var(--t),transform .5s var(--t),box-shadow .5s var(--t)}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent)}
 .card h2{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--text);margin-bottom:4px}
 .card .card-desc{font-size:12px;color:var(--text3);line-height:1.6;margin-bottom:18px}
 .step-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:3px 10px;margin-bottom:12px}
-
-/* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal.visible:hover{border-color:rgba(201,168,76,0.35);box-shadow:0 14px 36px -18px rgba(0,0,0,0.6)}
-
-/* LOADING / STATUS */
 .center-msg{text-align:center;padding:40px 20px}
 .center-msg .icon{font-size:36px;margin-bottom:12px;display:block;animation:icon-breathe 2.6s ease-in-out infinite}
 .center-msg h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:10px}
 .center-msg p{font-size:13px;color:var(--text2);line-height:1.7;max-width:380px;margin:0 auto}
 @keyframes icon-breathe{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
-
-/* PREP / ANTICIPATION REVEAL */
 #prepCard{opacity:0;transform:scale(0.98);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
 #prepCard.visible{opacity:1;transform:scale(1)}
 .prep-icon{animation:prep-glow 1.6s ease-in-out infinite}
@@ -95,17 +64,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .prep-sub{font-size:12px;letter-spacing:0.5px;color:var(--gold-light);margin-top:2px}
 #mainFlow{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1)}
 #mainFlow.show{opacity:1}
-
-/* GALLERY */
-.gallery-empty{text-align:center;font-size:12px;color:var(--text3);padding:24px 0;font-style:italic}
-.gallery-polling{display:none;align-items:center;justify-content:center;gap:7px;font-size:11px;color:var(--text3);padding:10px 0 4px;text-align:center}
-.gallery-polling.show{display:flex}
-.gallery-polling::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 1.4s ease-in-out infinite}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
-.gallery-actions{display:flex;gap:8px;align-items:center;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
-.gallery-actions button{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:5px 12px;cursor:pointer;transition:var(--t);font-family:inherit}
-.gallery-actions button:hover{background:var(--gold-dim);border-color:var(--gold)}
-.gallery-actions button:active{transform:scale(0.96)}
 .gallery-item{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;border:2px solid var(--border2);cursor:pointer;transition:transform .25s var(--t),border-color .25s var(--t),box-shadow .25s var(--t);background:var(--surface2);animation:item-in .5s cubic-bezier(.16,1,.3,1) both;animation-delay:var(--d,0s)}
 .gallery-item:active{transform:scale(0.96)}
 .gallery-item.selected{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold), 0 6px 18px -8px rgba(201,168,76,0.5);transform:scale(1.015)}
@@ -117,13 +76,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .gallery-item.selected .gallery-check{background:var(--gold);border-color:var(--gold);color:var(--black);transform:scale(1)}
 @keyframes item-in{from{opacity:0;transform:scale(0.92) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .gallery-tag{position:absolute;bottom:6px;left:6px;font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--gold-light);background:rgba(8,8,8,0.7);border-radius:4px;padding:2px 6px}
-.gallery-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--surface2);color:var(--text3);cursor:pointer}
 .gallery-count{font-size:11px;color:var(--text3);margin-top:12px;text-align:center;letter-spacing:0.5px}
 .gallery-count strong{color:var(--gold)}
-.gallery-hint{font-size:10px;color:var(--text3);text-align:center;margin-top:6px;font-style:italic;display:none}
-.gallery-hint.show{display:block}
-
-/* PACKAGES */
 .pkg{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--border2);border-radius:12px;padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color .25s var(--t),background .25s var(--t),transform .15s var(--t);background:var(--surface2)}
 .pkg:hover{border-color:rgba(201,168,76,0.4)}
 .pkg:active{transform:scale(0.99)}
@@ -138,10 +92,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .pkg.pkg-static{transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .25s var(--t),background .25s var(--t),box-shadow .3s var(--t);animation:pkg-in .6s cubic-bezier(.16,1,.3,1) both}
 .landing-section .pkg.pkg-static:nth-child(2){animation-delay:.08s}
 .landing-section .pkg.pkg-static:nth-child(3){animation-delay:.14s}
-.landing-section .pkg.pkg-static:nth-child(4){animation-delay:.2s}
-.landing-section .pkg.pkg-static:nth-child(5){animation-delay:.26s}
-.landing-section .pkg.pkg-static:nth-child(6){animation-delay:.32s}
-.landing-section .pkg.pkg-static:nth-child(7){animation-delay:.38s}
 @keyframes pkg-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .pkg.pkg-static:hover{transform:translateY(-3px) scale(1.012);border-color:rgba(201,168,76,0.5);background:var(--surface3);box-shadow:0 16px 36px -18px rgba(201,168,76,0.3)}
 .pkg.pkg-static:active{transform:translateY(-1px) scale(0.99)}
@@ -151,61 +101,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .pkg-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
 .pkg-desc{font-size:12px;color:var(--text2);line-height:1.6}
 .pkg-price{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);white-space:nowrap}
-.pkg-cap-hint{font-size:10px;color:var(--text3);font-style:italic;margin-top:3px}
-
-/* AI-ENHANCED EDIT ADD-ON */
-.ai-edit-toggle{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--border2);border-radius:12px;padding:16px;margin-top:14px;cursor:pointer;transition:border-color .25s var(--t),background .25s var(--t),box-shadow .25s var(--t);background:var(--surface2);position:relative}
-.ai-edit-toggle:hover{border-color:rgba(201,168,76,0.4)}
-.ai-edit-toggle.active{border-color:var(--gold);background:var(--gold-dim)}
-.ai-edit-toggle.first-seen{animation:ai-toggle-shimmer .8s ease-out}
-@keyframes ai-toggle-shimmer{0%{box-shadow:0 0 0 0 rgba(201,168,76,0.5)}50%{box-shadow:0 0 24px 4px rgba(201,168,76,0.25)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
-.ai-edit-toggle-check{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--text3);flex-shrink:0;margin-top:2px;position:relative;transition:var(--t)}
-.ai-edit-toggle.active .ai-edit-toggle-check{border-color:var(--gold);background:var(--gold)}
-.ai-edit-toggle.active .ai-edit-toggle-check::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--black);font-weight:700}
-.ai-edit-toggle-body{flex:1;min-width:0}
-.ai-edit-toggle-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
-.ai-edit-toggle-desc{font-size:12px;color:var(--text2);line-height:1.6}
-.ai-edit-toggle-price{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);white-space:nowrap}
-.ai-edit-options{margin-top:10px;padding:14px;border:1px solid var(--border2);border-radius:12px;background:var(--surface2);animation:fade-up .4s cubic-bezier(.16,1,.3,1)}
-.ai-edit-theme{display:flex;align-items:center;gap:12px;border:1px solid var(--border2);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:var(--t);background:var(--surface)}
-.ai-edit-theme-thumb{width:54px;height:54px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid var(--border)}
-.ai-edit-theme:last-child{margin-bottom:0}
-.ai-edit-theme.active{border-color:var(--gold);background:var(--gold-dim)}
-.ai-edit-theme-radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--text3);flex-shrink:0;margin-top:2px;position:relative}
-.ai-edit-theme.active .ai-edit-theme-radio{border-color:var(--gold)}
-.ai-edit-theme.active .ai-edit-theme-radio::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--gold)}
-.ai-edit-theme-name{font-size:13px;font-weight:600;color:var(--text)}
-.ai-edit-theme-desc{font-size:11.5px;color:var(--text2);line-height:1.5;margin-top:2px}
-.ai-edit-photo-row{margin-top:12px}
-.ai-edit-photo-row label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:6px}
-.ai-edit-photo-row select{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:13px;padding:10px;font-family:inherit}
-.ai-edit-photo-row select:focus{outline:none;border-color:var(--gold)}
-
-/* Theme chips row (enhanced toggle) */
-.theme-chips{display:flex;gap:6px;margin-top:8px;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch}
-.theme-chips::-webkit-scrollbar{display:none}
-.theme-chip{flex-shrink:0;width:44px;height:44px;border-radius:10px;overflow:hidden;border:2px solid var(--border2);cursor:pointer;transition:var(--t);position:relative}
-.theme-chip:hover{border-color:rgba(201,168,76,0.5)}
-.theme-chip.selected{border-color:var(--gold);box-shadow:0 0 10px rgba(201,168,76,0.35)}
-.theme-chip img{width:100%;height:100%;object-fit:cover;display:block}
-.theme-chip-label{font-size:8px;color:var(--gold-light);text-align:center;margin-top:3px;letter-spacing:0.5px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;max-width:44px}
-
-/* AI-ENHANCED EDIT RESULT / PENDING */
-.ai-edit-pending{text-align:center;font-size:12px;color:var(--text3);line-height:1.6;padding:14px;border:1px solid var(--border2);border-radius:10px;margin-top:16px;background:var(--surface2);display:none;align-items:center;justify-content:center;gap:8px}
-.ai-edit-pending.show{display:flex;animation:fade-up .5s cubic-bezier(.16,1,.3,1)}
-.ai-edit-pending::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 1.4s ease-in-out infinite}
-.ai-edit-result{display:none}
-.ai-edit-result.show{display:block;animation:fade-up .5s cubic-bezier(.16,1,.3,1)}
-.ai-edit-result img{width:100%;border-radius:14px;border:1px solid var(--border2);margin-bottom:12px}
-
-/* TOTAL */
 .total-row{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border2);margin-top:6px}
 .total-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3)}
 .total-amt{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);display:inline-block;transition:transform .25s var(--t)}
 .total-amt.bump{animation:amt-bump .4s cubic-bezier(.34,1.56,.64,1)}
 @keyframes amt-bump{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
-
-/* PAYMENT */
 .pay-box{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
 .pay-qr{width:200px;height:200px;border-radius:12px;border:1px solid var(--border2);background:#fff;flex-shrink:0;overflow:hidden;padding:10px;box-sizing:border-box;animation:qr-glow 4s ease-in-out infinite}
 @keyframes qr-glow{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}50%{box-shadow:0 0 26px 2px rgba(201,168,76,0.35)}}
@@ -218,8 +118,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .btn-link{display:inline-block;margin-top:10px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--black);background:var(--gold);border-radius:8px;padding:10px 18px;text-decoration:none;transition:transform .2s var(--t),box-shadow .2s var(--t),background .2s var(--t)}
 .btn-link:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 10px 26px -10px rgba(201,168,76,0.55)}
 .btn-link:active{transform:translateY(0) scale(0.985)}
-
-/* CONFIRM / DOWNLOAD */
 .confirm-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .confirm-row input{width:18px;height:18px;accent-color:var(--gold)}
 .confirm-row label{font-size:13px;color:var(--text2)}
@@ -227,30 +125,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .btn-primary:hover:not(:disabled){background:var(--gold-light);transform:translateY(-1px);box-shadow:0 10px 26px -10px rgba(201,168,76,0.55)}
 .btn-primary:active:not(:disabled){transform:translateY(0) scale(0.985)}
 .btn-primary:disabled{opacity:0.35;cursor:not-allowed}
-.btn-primary.unlocked{animation:unlock-glow 1.1s cubic-bezier(.16,1,.3,1)}
 .download-progress{display:none;text-align:center;font-size:12px;color:var(--text2);padding:10px 0;gap:8px;align-items:center;justify-content:center}
 .download-progress.show{display:flex;animation:fade-up .4s cubic-bezier(.16,1,.3,1)}
 .download-progress::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 1s ease-in-out infinite}
-
-/* FOCUS STYLES */
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
-button:focus-visible,a:focus-visible,.pkg:focus-visible,.gallery-item:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-@keyframes unlock-glow{0%{box-shadow:0 0 0 0 rgba(201,168,76,0.55)}70%{box-shadow:0 0 0 18px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
+button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .delivery-msg{display:none;text-align:center;padding:18px 0 4px;font-size:13px;color:var(--sage)}
 .delivery-msg.show{display:block;animation:fade-up .5s cubic-bezier(.16,1,.3,1)}
-.circle-nudge{display:none;text-align:center;margin-top:18px;padding-top:18px;border-top:1px solid var(--border2)}
-.circle-nudge.show{display:block;animation:fade-up .6s cubic-bezier(.16,1,.3,1) .15s both}
-.circle-nudge-text{font-size:12px;color:var(--text2);line-height:1.7;max-width:420px;margin:0 auto 12px}
-.pay-pending{text-align:center;font-size:12px;color:var(--text3);line-height:1.6;padding:14px;border:1px solid var(--border2);border-radius:10px;margin-bottom:16px;background:var(--surface2);display:flex;align-items:center;justify-content:center;gap:8px;animation:fade-up .5s cubic-bezier(.16,1,.3,1)}
-.pay-pending::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 1.4s ease-in-out infinite}
-.payment-timeout-msg{display:none;font-size:11px;color:var(--text3);text-align:center;padding:8px 0 0;line-height:1.6}
-.payment-timeout-msg.show{display:block;animation:fade-up .5s cubic-bezier(.16,1,.3,1)}
-.payment-timeout-msg a{color:var(--gold);cursor:pointer;text-decoration:underline;font-weight:500}
-.inline-err{font-size:12px;color:#E8A0AE;background:rgba(194,105,122,0.1);border:1px solid rgba(194,105,122,0.3);border-radius:8px;padding:10px 12px;line-height:1.5;margin-bottom:12px}
-@keyframes pulse-dot{0%,100%{opacity:0.35;transform:scale(0.85)}50%{opacity:1;transform:scale(1.15)}}
-@keyframes fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-/* LANDING — code entry / menu / tip */
 .code-entry{display:flex;gap:10px;margin-bottom:6px;flex-wrap:wrap}
 .code-entry input{flex:1 1 140px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:17px;letter-spacing:5px;text-transform:uppercase;text-align:center;padding:14px 10px;font-weight:700;font-family:inherit}
 .code-entry input::placeholder{letter-spacing:2px;color:var(--text3);font-weight:400}
@@ -258,19 +139,14 @@ button:focus-visible,a:focus-visible,.pkg:focus-visible,.gallery-item:focus-visi
 .code-entry .btn-primary{width:auto;flex:1 1 140px}
 .landing-section{margin-top:22px;padding-top:18px;border-top:1px solid var(--border2)}
 .menu-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;color:var(--text2);padding:7px 0}
-.menu-row .menu-name{color:var(--text)}
+.menu-name{color:var(--text)}
 .menu-price{font-family:'Playfair Display',serif;color:var(--gold);font-weight:700;white-space:nowrap}
-
-/* FOOTER / RECRUIT */
 .recruit{text-align:center;padding:8px 4px 4px}
 .recruit p{font-size:12px;color:var(--text2);line-height:1.8;margin-bottom:14px}
 .recruit p strong{color:var(--gold)}
 .recruit a.btn-link{background:transparent;border:1px solid var(--gold);color:var(--gold)}
 .recruit a.btn-link:hover{background:var(--gold-dim)}
-
 .av-footer{text-align:center;font-size:10px;color:var(--text3);letter-spacing:1px;padding:18px 0 4px}
-
-/* PREVIEW LIGHTBOX */
 .lightbox{position:fixed;inset:0;background:rgba(8,8,8,0.92);display:none;align-items:center;justify-content:center;z-index:50;padding:28px;cursor:pointer;backdrop-filter:blur(4px)}
 .lightbox.show{display:flex;animation:fade-up .3s cubic-bezier(.16,1,.3,1)}
 .lightbox-inner{max-width:480px;width:100%;text-align:center;cursor:default}
@@ -283,383 +159,135 @@ button:focus-visible,a:focus-visible,.pkg:focus-visible,.gallery-item:focus-visi
 .lightbox-cap .pkg-desc{color:var(--text2);font-size:13px;margin-bottom:6px}
 .lightbox-cap .pkg-price{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold)}
 .lightbox-close{margin-top:18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3)}
-
-/* AI Edit Preview Card (Touch 1) */
-.ai-preview-card{text-align:center}
-.ai-preview-card .ba-wrap{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/4;background:var(--surface2);border:1px solid var(--border2);cursor:ew-resize;user-select:none;touch-action:none;max-width:280px;margin:0 auto 10px}
-.ai-preview-card .ba-before,.ai-preview-card .ba-after{position:absolute;inset:0;background-size:cover;background-position:center top}
-.ai-preview-card .ba-before{z-index:1}
-.ai-preview-card .ba-after{z-index:2;clip-path:inset(0 50% 0 0)}
-.ai-preview-card .ba-divider{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);z-index:3;transform:translateX(-50%)}
-.ai-preview-card .ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:var(--gold);z-index:4;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(201,168,76,0.45)}
-.ai-preview-card .ba-handle svg{width:16px;height:16px;fill:var(--black)}
-.ai-preview-card .ba-tag{position:absolute;bottom:10px;z-index:5;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;font-weight:600}
-.ai-preview-card .ba-tag.before{left:10px;background:rgba(8,8,8,0.7);color:var(--text3);border:1px solid var(--border2)}
-.ai-preview-card .ba-tag.after{right:10px;background:rgba(201,168,76,0.85);color:var(--black)}
-.ai-preview-card .ba-hint{font-size:10px;color:var(--text3);margin-bottom:12px}
-.ai-preview-see-all{display:inline-block;font-size:11px;font-weight:600;color:var(--gold);cursor:pointer;text-decoration:underline;transition:var(--t)}
-.ai-preview-see-all:hover{color:var(--gold-light)}
-
-/* AI Edit Full Modal (Touch 2) */
-.ai-modal-overlay{position:fixed;inset:0;background:rgba(8,8,8,0.94);z-index:60;display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(8px)}
-.ai-modal-overlay.show{display:flex;animation:fade-up .25s cubic-bezier(.16,1,.3,1)}
-.ai-modal-content{max-width:480px;width:100%;padding:24px 0 60px;position:relative}
-.ai-modal-close{position:sticky;top:10px;float:right;width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);color:var(--text2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5;transition:var(--t)}
-.ai-modal-close:hover{background:var(--surface3);color:var(--text)}
-.ai-modal-hero{text-align:center;margin-bottom:24px}
-.ai-modal-hero .hero-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
-.ai-modal-hero .hero-title{font-family:'Playfair Display',serif;font-size:clamp(26px,7vw,34px);font-weight:700;line-height:1.2;margin-bottom:10px;color:var(--text)}
-.ai-modal-hero .hero-title em{font-style:italic;color:var(--gold)}
-.ai-modal-hero .hero-desc{font-size:13px;color:var(--text2);line-height:1.7;max-width:340px;margin:0 auto}
-.ai-modal-ba{margin-bottom:28px}
-.ai-modal-ba .ba-wrap{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4;background:var(--surface2);border:1px solid var(--border2);cursor:ew-resize;user-select:none;touch-action:none}
-.ai-modal-ba .ba-before,.ai-modal-ba .ba-after{position:absolute;inset:0;background-size:cover;background-position:center top}
-.ai-modal-ba .ba-before{z-index:1}
-.ai-modal-ba .ba-after{z-index:2;clip-path:inset(0 50% 0 0)}
-.ai-modal-ba .ba-divider{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--gold);z-index:3;transform:translateX(-50%)}
-.ai-modal-ba .ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--gold);z-index:4;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(201,168,76,0.5)}
-.ai-modal-ba .ba-handle svg{width:18px;height:18px;fill:var(--black)}
-.ai-modal-ba .ba-tag{position:absolute;bottom:16px;z-index:5;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px;border-radius:6px;font-weight:600}
-.ai-modal-ba .ba-tag.before{left:16px;background:rgba(8,8,8,0.7);color:var(--text3);border:1px solid var(--border2)}
-.ai-modal-ba .ba-tag.after{right:16px;background:rgba(201,168,76,0.85);color:var(--black)}
-.ai-modal-ba-hint{text-align:center;font-size:10px;color:var(--text3);margin-top:8px;letter-spacing:0.5px}
-.ai-modal-themes-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
-.ai-modal-theme-card{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:3/4;background:var(--surface2);border:1px solid var(--border2);cursor:pointer;transition:transform var(--t),border-color var(--t)}
-.ai-modal-theme-card:hover{transform:scale(1.02);border-color:rgba(201,168,76,0.4)}
-.ai-modal-theme-card img{width:100%;height:100%;object-fit:cover;display:block}
-.ai-modal-theme-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,0.85) 0%,rgba(8,8,8,0.1) 55%,transparent 100%)}
-.ai-modal-theme-card-body{position:absolute;bottom:0;left:0;right:0;padding:12px}
-.ai-modal-theme-card-name{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
-.ai-modal-theme-card-desc{font-size:10px;color:rgba(242,237,230,0.7);line-height:1.4}
-.ai-modal-theme-card-price{position:absolute;top:10px;right:10px;background:rgba(201,168,76,0.9);color:var(--black);font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px}
-.ai-modal-hiw{margin-bottom:28px}
-.ai-modal-hiw-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:14px}
-.ai-modal-hiw-steps{display:flex;flex-direction:column;gap:12px}
-.ai-modal-hiw-step{display:flex;gap:14px;align-items:flex-start;padding:14px;border:1px solid var(--border2);border-radius:12px;background:var(--surface)}
-.ai-modal-hiw-num{width:30px;height:30px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;color:var(--gold);flex-shrink:0}
-.ai-modal-hiw-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px}
-.ai-modal-hiw-desc{font-size:11px;color:var(--text2);line-height:1.5}
-.ai-modal-cta{text-align:center}
-.ai-modal-cta-btn{display:inline-block;background:var(--gold);color:var(--black);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 28px;border-radius:12px;cursor:pointer;border:none;font-family:inherit;transition:var(--t)}
-.ai-modal-cta-btn:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 10px 26px -10px rgba(201,168,76,0.5)}
-.ai-modal-cta-note{margin-top:10px;font-size:10px;color:var(--text3)}
-
-/* ===== MOBILE OPTIMIZATION ===== */
-@media (max-width:600px){
-  body{padding:14px}
-  .card{padding:18px;border-radius:14px}
-  .av-header{margin-bottom:24px}
-  .av-wordmark{font-size:26px;letter-spacing:4px}
-  .av-sub{font-size:11px;letter-spacing:2px}
-  .av-tagline{letter-spacing:2px}
-  .card h2{font-size:17px}
-  .center-msg{padding:28px 8px}
-  .center-msg .icon{font-size:30px}
-  .center-msg h2{font-size:18px}
-  .center-msg p{font-size:12.5px}
-  .ai-modal-content{padding:16px 0 40px}
-}
-
-@media (max-width:480px){
-  .gallery-grid{grid-template-columns:repeat(2,1fr)}
-  .pay-box{justify-content:center;text-align:center}
-  .pay-qr{width:180px;height:180px}
-
-  .pkg{gap:10px;padding:12px}
-  .pkg-thumb{width:46px;height:46px}
-  .pkg-name{font-size:13px}
-  .pkg-desc{font-size:11.5px;line-height:1.5}
-  .pkg-price{font-size:16px}
-  .pkg-radio{width:16px;height:16px}
-
-  .code-entry{flex-direction:column}
-  .code-entry input,.code-entry .btn-primary{flex:1 1 auto;width:100%}
-
-  .btn-primary{font-size:12px;letter-spacing:1px;padding:13px}
-
-  .total-amt{font-size:24px}
-  .lightbox{padding:14px}
-  .lightbox-cap .pkg-name{font-size:16px}
-  .lightbox-cap .pkg-price{font-size:19px}
-  .ai-modal-themes-grid{grid-template-columns:1fr 1fr;gap:8px}
-}
-
-@media (max-width:360px){
-  body{padding:10px}
-  .card{padding:14px}
-  .av-wordmark{font-size:21px;letter-spacing:2px}
-  .av-tagline{letter-spacing:1.5px;font-size:9px}
-  .step-tag{font-size:9px;padding:3px 8px}
-  .pkg{gap:8px;padding:10px}
-  .pkg-thumb{width:40px;height:40px}
-  .pkg-price{font-size:15px}
-  .pay-qr{width:160px;height:160px}
-}
+@keyframes pulse-dot{0%,100%{opacity:0.35;transform:scale(0.85)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:600px){ body{padding:14px} .card{padding:18px;border-radius:14px} .av-header{margin-bottom:24px} .av-wordmark{font-size:26px;letter-spacing:4px} .card h2{font-size:17px} .center-msg{padding:28px 8px} }
+@media (max-width:480px){ .gallery-grid{grid-template-columns:repeat(2,1fr)} .pay-box{justify-content:center;text-align:center} .pay-qr{width:180px;height:180px} .pkg{gap:10px;padding:12px} .btn-primary{font-size:12px;letter-spacing:1px;padding:13px} .total-amt{font-size:24px} .lightbox{padding:14px} .code-entry{flex-direction:column} .code-entry input,.code-entry .btn-primary{flex:1 1 auto;width:100%} }
 </style>
 </head>
 <body>
-
-<!-- AMBIENT BACKGROUND -->
 <div class="bg-fx" aria-hidden="true">
   <div class="bg-glow bg-glow-gold"></div>
   <div class="bg-glow bg-glow-rose"></div>
   <div class="bg-glow bg-glow-sage"></div>
-  <div class="bg-glow bg-glow-rose2"></div>
-  <div id="sparkleField"></div>
 </div>
-
 <div class="wrap">
-
-  <!-- HEADER -->
-  <div class="av-header">
-    <span class="av-wordmark">ATCHÉ VISUALS</span>
-    <div class="av-sub">Nightlife Photography & Performance Reels</div>
-    <div class="av-rule"></div>
-    <div class="av-tagline">Washington, DC</div>
-  </div>
-
-  <!-- LOADING -->
-  <div class="card" id="loadingCard">
-    <div class="center-msg">
-      <span class="icon">✦</span>
-      <h2>Finding your gallery…</h2>
-    </div>
-  </div>
-
-  <!-- PREPARING GALLERY -->
-  <div class="card" id="prepCard" style="display:none">
-    <div class="center-msg">
-      <span class="icon prep-icon">✦</span>
-      <h2>Preparing your gallery…</h2>
-      <p class="prep-sub" id="prepSub"></p>
-    </div>
-  </div>
-
-  <!-- NO CODE / LANDING -->
-  <div class="card reveal" id="landingCard" style="display:none">
-    <div class="center-msg" style="padding-bottom:12px">
-      <span class="icon">📷</span>
-      <h2>Your photos are ready</h2>
-      <p>Got a code from your photographer? Enter it below — your gallery opens instantly.</p>
-    </div>
-
-    <div class="code-entry" style="margin-top:4px">
-      <input type="text" id="codeInput" maxlength="5" placeholder="CODE" autocapitalize="characters" autocomplete="off" inputmode="text" aria-label="Enter your 5-character session code" onkeydown="if(event.key==='Enter') goToCode()">
-      <button class="btn-primary" style="margin-top:0" onclick="goToCode()">Open My Gallery</button>
-    </div>
-
-    <p style="text-align:center;font-size:11px;color:var(--text3);margin-top:8px">Enter your code to see your personal gallery and pick your shots.</p>
-
-    <div class="landing-section">
-      <span class="step-tag">Tonight's Menu</span>
-      <p class="card-desc" style="margin-bottom:14px">No code yet? Browse what's on offer while you wait for the link.</p>
-
-      <div class="pkg pkg-static" onclick="openPreview(0)">
-        <div class="pkg-thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260613_005538_be580b13-e2b5-4009-a425-a12c797e7f89_min.webp" alt="Quick Shot preview" loading="lazy"></div>
-        <div class="pkg-body">
-          <div class="pkg-name">Quick Shot</div>
-          <div class="pkg-desc">One full-resolution photo, your pick from tonight</div>
-        </div>
-        <div class="pkg-price">$10</div>
-      </div>
-
-      <div class="pkg pkg-static" onclick="openPreview(1)">
-        <div class="pkg-thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260613_010304_ca7ed54c-53ee-4a4f-9b64-3e8d76036eff_min.webp" alt="The Bundle preview" loading="lazy"></div>
-        <div class="pkg-body">
-          <div class="pkg-name">The Bundle</div>
-          <div class="pkg-desc">Up to 8 edited photos — your whole night, curated</div>
-        </div>
-        <div class="pkg-price">$30</div>
-      </div>
-
-      <div class="pkg pkg-static" style="margin-bottom:0" onclick="openPreview(2)">
-        <div class="pkg-thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260613_010309_5bf0f52c-7833-404d-8344-2c6338e26eac_min.webp" alt="Full Night preview" loading="lazy"></div>
-        <div class="pkg-body">
-          <div class="pkg-name">Full Night</div>
-          <div class="pkg-desc">Every photo + a reel — the full story, ready to post</div>
-        </div>
-        <div class="pkg-price">$60</div>
-      </div>
-    </div>
-
-    <div class="landing-section">
-      <span class="step-tag">Pay / Tip Your Photographer</span>
-      <div class="pay-box">
-        <div class="pay-qr-wrap">
-          <div class="pay-qr"><img id="landingQrImg" alt="Cash App QR code"></div>
-          <div class="pay-qr-label">Scan with Cash App</div>
-        </div>
-        <div class="pay-info">
-          <div class="pay-handle">$XaveirMSnow</div>
-          <div class="pay-note">Scan to send a payment or tip via Cash App — your photographer will see it instantly.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SESSION NOT FOUND -->
-  <div class="card" id="notFoundCard" style="display:none">
-    <div class="center-msg">
-      <span class="icon">🔍</span>
-      <h2>We can't find that gallery</h2>
-      <p>This link may have expired or been typed wrong. Check with your photographer for a fresh link.</p>
-    </div>
-  </div>
-
-  <!-- MAIN FLOW -->
-  <div id="mainFlow" style="display:none">
-
-    <!-- GALLERY -->
-    <div class="card reveal">
-      <span class="step-tag" id="sessionLabelTag">Your Photos Tonight</span>
-      <h2>Tap the shots you want</h2>
-      <p class="card-desc">Previews are watermarked. Tap to select — your full-resolution originals unlock the moment you pay.</p>
-      <div class="gallery-empty" id="galleryEmpty">Your photographer is still uploading — this page checks for new shots automatically.</div>
-      <div class="gallery-polling" id="galleryPolling">Checking for new shots…</div>
-      <div class="gallery-actions" id="galleryActions" style="display:none">
-        <button onclick="selectAllPhotos()">Select All</button>
-        <button onclick="deselectAllPhotos()">Clear</button>
-      </div>
-      <div class="gallery-grid" id="galleryGrid" style="display:none"></div>
-      <div class="gallery-hint" id="galleryHint"></div>
-      <div class="gallery-count" id="galleryCount" style="display:none"></div>
-    </div>
-
-    <!-- AI EDIT PREVIEW (Touch 1) -->
-    <div class="card reveal ai-preview-card" id="aiPreviewCard" style="display:none">
-      <span class="step-tag">✨ AI Edit Preview</span>
-      <h2>Same you. Different world.</h2>
-      <p class="card-desc" style="margin-bottom:12px">See what one of your photos could look like — then add it to your order with one tap.</p>
-      <div class="ba-wrap" id="aiPreviewBaWrap">
-        <div class="ba-before" id="aiPreviewBefore" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260613_005538_be580b13-e2b5-4009-a425-a12c797e7f89_min.webp')"></div>
-        <div class="ba-after" id="aiPreviewAfter" style="background-image:url('after-pj-girls.jpg')"></div>
-        <div class="ba-divider" id="aiPreviewDivider"></div>
-        <div class="ba-handle" id="aiPreviewHandle">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5l-7 7 7 7V5zm8 0v14l7-7-7-7z"/></svg>
-        </div>
-        <span class="ba-tag before">Original</span>
-        <span class="ba-tag after">AI Edit</span>
-      </div>
-      <p class="ba-hint">← drag to compare →</p>
-      <span class="ai-preview-see-all" onclick="openAiEditModal()">See all 6 themes →</span>
-    </div>
-
-    <!-- PACKAGES -->
-    <div class="card reveal">
-      <span class="step-tag">Choose Your Package</span>
-      <h2>What do you want to take home?</h2>
-      <p class="card-desc">Pick what fits — you can change your mind any time before you pay.</p>
-
-      <div class="pkg active" data-price="10" data-name="Quick Shot" data-max="1" onclick="selectPkg(this)">
-        <div class="pkg-radio"></div>
-        <div class="pkg-body">
-          <div class="pkg-name">Quick Shot</div>
-          <div class="pkg-desc">1 full-resolution photo, your pick</div>
-        </div>
-        <div class="pkg-price">$10</div>
-      </div>
-
-      <div class="pkg" data-price="30" data-name="The Bundle" data-max="8" onclick="selectPkg(this)">
-        <div class="pkg-radio"></div>
-        <div class="pkg-body">
-          <div class="pkg-name">The Bundle</div>
-          <div class="pkg-desc">Up to 8 edited photos from tonight</div>
-        </div>
-        <div class="pkg-price">$30</div>
-      </div>
-
-      <div class="pkg" data-price="60" data-name="Full Night" data-max="999" onclick="selectPkg(this)">
-        <div class="pkg-radio"></div>
-        <div class="pkg-body">
-          <div class="pkg-name">Full Night</div>
-          <div class="pkg-desc">Every photo + a reel — the full story, ready to post</div>
-        </div>
-        <div class="pkg-price">$60</div>
-      </div>
-
-      <div class="ai-edit-toggle" id="aiEditToggle" onclick="toggleAiEdit()">
-        <div class="ai-edit-toggle-check" id="aiEditCheck"></div>
-        <div class="ai-edit-toggle-body">
-          <div class="ai-edit-toggle-name">+ AI-Enhanced Edit</div>
-          <div class="ai-edit-toggle-desc">Same you, different world — private jet, VIP section, red carpet, your name in lights. Ready in your gallery within 24 hrs. <a onclick="event.stopPropagation();openAiEditModal()" style="color:var(--gold);text-decoration:underline;font-weight:600;cursor:pointer">See examples →</a></div>
-        </div>
-        <div class="ai-edit-toggle-price" id="aiEditTogglePrice">+$20</div>
-      </div>
-
-      <div class="ai-edit-options" id="aiEditOptions" style="display:none">
-        <div class="theme-chips" id="themeChips"></div>
-        <div class="ai-edit-themes" id="aiEditThemes"></div>
-        <div class="ai-edit-photo-row">
-          <label for="aiEditPhoto">Which shot should we use?</label>
-          <select id="aiEditPhoto" onchange="updateTotal()"></select>
-        </div>
-      </div>
-
-      <div class="total-row">
-        <span class="total-label">Total Due</span>
-        <span class="total-amt" id="totalAmt">$5</span>
-      </div>
-    </div>
-
-    <!-- PAY -->
-    <div class="card reveal">
-      <span class="step-tag">Pay via Cash App</span>
-      <h2>Scan to pay</h2>
-      <p class="card-desc">Scan the QR or tap the button — your total's already loaded in. Once it's sent, tap below to unlock your download.</p>
-      <div class="pay-box">
-        <div class="pay-qr-wrap">
-          <div class="pay-qr"><img id="qrImg" alt="Cash App QR code"></div>
-          <div class="pay-qr-label">Scan with Cash App</div>
-        </div>
-        <div class="pay-info">
-          <div class="pay-handle">$XaveirMSnow</div>
-          <div class="pay-note">Cash App handles all payments. Tap below to open Cash App with your total already filled in.</div>
-          <a class="btn-link" id="payLink" target="_blank" rel="noopener">Pay with Cash App</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- GET YOUR CONTENT -->
-    <div class="card reveal">
-      <span class="step-tag">Get Your Content</span>
-      <h2>Confirm & download</h2>
-      <p class="card-desc" id="payHelp">Sent the payment? Tap below — your download unlocks right here, no refresh needed.</p>
-      <div class="inline-err" id="confirmErr" style="display:none"></div>
-      <div class="confirm-row" id="payConfirmRow">
-        <button class="btn-primary" id="paidBtn" onclick="requestPaymentConfirmation()">I've sent payment via Cash App</button>
-      </div>
-      <div class="pay-pending" id="payPending" style="display:none">Waiting for ATCHÉ Visuals to confirm your payment — keep this page open, this is usually quick.</div>
-      <div class="payment-timeout-msg" id="paymentTimeoutMsg">Still waiting — your photographer may be busy. Your link won't expire. <a onclick="cancelPaymentRequest()">Cancel request</a></div>
-      <div class="download-progress" id="downloadProgress">Preparing your download…</div>
-      <button class="btn-primary" id="downloadBtn" disabled style="display:none" onclick="downloadSelected()">Download Your Content</button>
-      <div class="delivery-msg" id="deliveryMsg">✓ Content downloaded — thanks for booking ATCHÉ Visuals tonight!</div>
-
-      <div class="ai-edit-pending" id="aiEditPending">✨ Your AI-Enhanced Edit is being created — check back here later tonight, no need to refresh.</div>
-      <div class="ai-edit-result" id="aiEditResult">
-        <h2 style="margin:18px 0 10px">Your AI-Enhanced Edit</h2>
-        <img id="aiEditResultImg" alt="Your AI-enhanced edit">
-        <button class="btn-primary" onclick="downloadAiEdit()">Download AI-Enhanced Edit</button>
-      </div>
-
-      <div class="circle-nudge" id="circleNudge">
-        <p class="circle-nudge-text">Were you the one in the photos? ATCHÉ is a community for creative women in DC nightlife — photographers, dancers, hosts, DJs, stylists, content creators — to get booked, paid on time, and protected.</p>
-        <a class="btn-link" href="https://atcheofficial.com">Apply to The Circle</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- RECRUIT -->
-  <div class="card recruit reveal">
-    <h2 style="margin-bottom:10px">Are you a creative?</h2>
-    <p>ATCHÉ Visuals is part of <strong>ATCHÉ</strong> — a community for creative women in DC nightlife (photographers, dancers, hosts, DJs, stylists, content creators) to get booked, paid on time, and protected. If tonight's shoot is your vibe, we want to meet you.</p>
-    <a class="btn-link" href="https://atcheofficial.com">Apply to The Circle</a>
-  </div>
-
-  <div class="av-footer">ATCHÉ VISUALS · Powered by ATCHÉ · Washington, DC</div>
+<div class="av-header">
+  <span class="av-wordmark">ATCHÉ VISUALS</span>
+  <div class="av-sub">Nightlife Photography & Performance Reels</div>
+  <div class="av-rule"></div>
+  <div class="av-tagline">Washington, DC</div>
 </div>
-
-<!-- PACKAGE PREVIEW LIGHTBOX -->
+<div class="card" id="loadingCard">
+  <div class="center-msg">
+    <span class="icon">✦</span>
+    <h2>Finding your gallery…</h2>
+  </div>
+</div>
+<div class="card" id="prepCard" style="display:none">
+  <div class="center-msg">
+    <span class="icon prep-icon">✦</span>
+    <h2>Preparing your gallery…</h2>
+    <p class="prep-sub" id="prepSub"></p>
+  </div>
+</div>
+<div class="card reveal" id="landingCard" style="display:none">
+  <div class="center-msg" style="padding-bottom:12px">
+    <span class="icon">📷</span>
+    <h2>Your photos are ready</h2>
+    <p>Got a code from your photographer? Enter it below — your gallery opens instantly.</p>
+  </div>
+  <div class="code-entry" style="margin-top:4px">
+    <input type="text" id="codeInput" maxlength="5" placeholder="CODE" autocapitalize="characters" autocomplete="off" inputmode="text" aria-label="Enter your 5-character session code" onkeydown="if(event.key==='Enter') goToCode()">
+    <button class="btn-primary" style="margin-top:0" onclick="goToCode()">Open My Gallery</button>
+  </div>
+  <p style="text-align:center;font-size:11px;color:var(--text3);margin-top:8px">Enter your code to see your personal gallery and pick your shots.</p>
+</div>
+<div class="card" id="notFoundCard" style="display:none">
+  <div class="center-msg">
+    <span class="icon">🔍</span>
+    <h2>We can't find that gallery</h2>
+    <p>This link may have expired or been typed wrong. Check with your photographer for a fresh link.</p>
+  </div>
+</div>
+<div id="mainFlow" style="display:none">
+<div class="card reveal">
+  <span class="step-tag" id="sessionLabelTag">Your Photos Tonight</span>
+  <h2>Tap the shots you want</h2>
+  <p class="card-desc">Previews are watermarked. Tap to select — your full-resolution originals unlock the moment you pay.</p>
+  <div class="gallery-grid" id="galleryGrid" style="display:none"></div>
+  <div id="galleryEmpty" style="display:none;text-align:center;padding:24px 0;font-size:12px;color:var(--text3);font-style:italic;">Your photographer is still uploading photos — this page checks automatically every 15 seconds.</div>
+  <div class="gallery-count" id="galleryCount" style="display:none"></div>
+  <p class="card-desc" style="margin-top:14px;text-align:center;color:var(--text2);display:none;" id="galleryHint">Tap any photo to see full resolution • Expand icon (⤢) opens preview</p>
+</div>
+<div class="card reveal">
+  <span class="step-tag">Choose Your Package</span>
+  <h2>What do you want to take home?</h2>
+  <p class="card-desc">Pick what fits — you can change your mind any time before you pay.</p>
+  <div class="pkg active" data-price="10" data-name="Quick Shot" data-max="1" onclick="selectPkg(this)">
+    <div class="pkg-radio"></div>
+    <div class="pkg-body">
+      <div class="pkg-name">Quick Shot</div>
+      <div class="pkg-desc">1 full-resolution photo, your pick (select 1)</div>
+    </div>
+    <div class="pkg-price">$10</div>
+  </div>
+  <div class="pkg" data-price="30" data-name="The Bundle" data-max="8" onclick="selectPkg(this)">
+    <div class="pkg-radio"></div>
+    <div class="pkg-body">
+      <div class="pkg-name">The Bundle</div>
+      <div class="pkg-desc">Up to 8 edited photos from tonight (select up to 8)</div>
+    </div>
+    <div class="pkg-price">$30</div>
+  </div>
+  <div class="pkg" data-price="60" data-name="Full Night" data-max="999" onclick="selectPkg(this)">
+    <div class="pkg-radio"></div>
+    <div class="pkg-body">
+      <div class="pkg-name">Full Night</div>
+      <div class="pkg-desc">Every photo + a reel — the full story, ready to post</div>
+    </div>
+    <div class="pkg-price">$60</div>
+  </div>
+  <div class="total-row">
+    <span class="total-label">Total Due</span>
+    <span class="total-amt" id="totalAmt">$10</span>
+  </div>
+</div>
+<div class="card reveal">
+  <span class="step-tag">Pay via Cash App</span>
+  <h2>Scan to pay</h2>
+  <p class="card-desc">Scan the QR or tap the button — your total's already loaded in. Once it's sent, tap below to unlock your download.</p>
+  <div class="pay-box">
+    <div class="pay-qr-wrap">
+      <div class="pay-qr"><img id="qrImg" alt="Cash App QR code"></div>
+      <div class="pay-qr-label">Scan with Cash App</div>
+    </div>
+    <div class="pay-info">
+      <div class="pay-handle">$XaveirMSnow</div>
+      <div class="pay-note">Cash App handles all payments. Tap below to open Cash App with your total already filled in.</div>
+      <a class="btn-link" id="payLink" target="_blank" rel="noopener">Pay with Cash App</a>
+    </div>
+  </div>
+</div>
+<div class="card reveal">
+  <span class="step-tag">Get Your Content</span>
+  <h2>Confirm & download</h2>
+  <p class="card-desc">Once you've sent the payment, tap below. Your photographer will see it and unlock your download.</p>
+  <div id="paymentError" style="display:none;background:rgba(194,105,122,0.1);border:1px solid rgba(194,105,122,0.3);border-radius:8px;padding:10px 12px;font-size:12px;color:#E8A0AE;margin-bottom:14px;line-height:1.5;"></div>
+  <div class="confirm-row" id="payConfirmRow">
+    <button class="btn-primary" id="paidBtn" onclick="requestPaymentConfirmation()">I've sent payment via Cash App</button>
+  </div>
+  <div class="download-progress" id="downloadProgress">Preparing your download…</div>
+  <button class="btn-primary" id="downloadBtn" disabled style="display:none" onclick="downloadSelected()">Download Your Content</button>
+  <div class="delivery-msg" id="deliveryMsg">✓ Content downloaded — thanks for booking ATCHÉ Visuals tonight!</div>
+</div>
+<div class="card recruit reveal">
+  <h2 style="margin-bottom:10px">Are you a creative?</h2>
+  <p>ATCHÉ Visuals is part of <strong>ATCHÉ</strong> — a community for creative women in DC nightlife (photographers, dancers, hosts, DJs, stylists, content creators) to get booked, paid on time, and protected. If tonight's shoot is your vibe, we want to meet you.</p>
+  <a class="btn-link" href="https://atcheofficial.com">Apply to The Circle</a>
+</div>
+<div class="av-footer">ATCHÉ VISUALS · Powered by ATCHÉ · Washington, DC</div>
+</div>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <div class="lightbox-inner">
     <div class="lightbox-loader" id="lightboxLoader">✦</div>
@@ -672,115 +300,20 @@ button:focus-visible,a:focus-visible,.pkg:focus-visible,.gallery-item:focus-visi
     <div class="lightbox-close">Tap anywhere to close</div>
   </div>
 </div>
-
-<!-- AI EDIT FULL MODAL (Touch 2) -->
-<div class="ai-modal-overlay" id="aiModalOverlay" onclick="closeAiEditModal(event)">
-  <div class="ai-modal-content" id="aiModalContent" onclick="event.stopPropagation()">
-    <button class="ai-modal-close" onclick="closeAiEditModal()" aria-label="Close AI Edit preview">✕</button>
-    
-    <div class="ai-modal-hero">
-      <span class="hero-eyebrow">AI-Enhanced Edit</span>
-      <h2 class="hero-title">Your photo.<br><em>Anywhere you want.</em></h2>
-      <p class="hero-desc">Same you. Same fit. Same energy. Just a different world behind you — private jet, VIP section, red carpet, your name in lights.</p>
-    </div>
-
-    <div class="ai-modal-ba" id="aiModalBa">
-      <div class="ba-wrap" id="aiModalBaWrap">
-        <div class="ba-before" id="aiModalBefore" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260613_005538_be580b13-e2b5-4009-a425-a12c797e7f89_min.webp')"></div>
-        <div class="ba-after" id="aiModalAfter" style="background-image:url('after-pj-girls.jpg')"></div>
-        <div class="ba-divider" id="aiModalDivider"></div>
-        <div class="ba-handle" id="aiModalHandle">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5l-7 7 7 7V5zm8 0v14l7-7-7-7z"/></svg>
-        </div>
-        <span class="ba-tag before">Original</span>
-        <span class="ba-tag after">AI Edit</span>
-      </div>
-      <p class="ai-modal-ba-hint">← drag to compare →</p>
-    </div>
-
-    <div class="ai-modal-themes-grid" id="aiModalThemesGrid"></div>
-
-    <div class="ai-modal-hiw">
-      <h3 class="ai-modal-hiw-title">How it works</h3>
-      <div class="ai-modal-hiw-steps">
-        <div class="ai-modal-hiw-step">
-          <div class="ai-modal-hiw-num">1</div>
-          <div>
-            <div class="ai-modal-hiw-name">Pick your scene</div>
-            <div class="ai-modal-hiw-desc">Choose one of 6 themes — private jet, VIP section, red carpet, and more.</div>
-          </div>
-        </div>
-        <div class="ai-modal-hiw-step">
-          <div class="ai-modal-hiw-num">2</div>
-          <div>
-            <div class="ai-modal-hiw-name">Pay & download your originals</div>
-            <div class="ai-modal-hiw-desc">Your regular photos unlock instantly. The AI edit is crafted after the night.</div>
-          </div>
-        </div>
-        <div class="ai-modal-hiw-step">
-          <div class="ai-modal-hiw-num">3</div>
-          <div>
-            <div class="ai-modal-hiw-name">It drops into your gallery</div>
-            <div class="ai-modal-hiw-desc">Your AI-enhanced photo appears here automatically — same link, no refresh.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ai-modal-cta">
-      <button class="ai-modal-cta-btn" id="aiModalCtaBtn" onclick="addAiEditFromModal()">I want this — add it to my order</button>
-      <p class="ai-modal-cta-note">Drops into your gallery within 24 hours · +$20 to your total</p>
-    </div>
-  </div>
 </div>
-
 <script>
 const SB_URL = 'https://aayigsbmmdolvnicxacs.supabase.co';
 const SB_KEY = 'sb_publishable_ofAZ_64cKZXJefM5nbbt3g_wNOoF5DC';
 const sb = supabase.createClient(SB_URL, SB_KEY);
 const BUCKET = 'visuals';
 const CASHTAG = 'XaveirMSnow';
-
 let session = null;
 let galleryItems = [];
 let currentPrice = 10;
 let currentName = 'Quick Shot';
 let currentMax = 1;
 let galleryPollInterval = null;
-
-const AI_EDIT_THEMES = [
-  { name:'Your Name in Lights', desc:'Marquee billboard, neon signs, concert stage energy — your name in the sky.', price:20, img:'https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260617_135834_2c76db40-227b-47c1-966f-c86d9eeda5f3_min.webp' },
-  { name:'Private Jet', desc:'Tarmac, private jet stairs, designer luggage, champagne in hand.', price:20, img:'after-pj-girls.jpg' },
-  { name:'Sports Car', desc:'Sleek supercar at golden hour, city or coastal road behind you.', price:20, img:'https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260617_135843_3048cb89-89f6-4138-a26e-29019e368814_min.webp' },
-  { name:'VIP Section', desc:'Velvet ropes, bottle service, a room that knows you\'re the reason they\'re here.', price:20, img:'https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260617_163420_60c68156-6487-4e8a-9851-531a52f9ba1a_min.webp' },
-  { name:'Penthouse Night', desc:'City skyline from a glowing penthouse lounge — floor-to-ceiling golden hour.', price:20, img:'https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260617_135857_20a230ea-796d-47c0-a83c-346a5bf954be_min.webp' },
-  { name:'Red Carpet', desc:'Step-and-repeat backdrop, paparazzi flashes, premiere-night vibe.', price:20, img:'https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260617_135905_2d4edb85-4027-4ca1-8336-baad12ce38eb_min.webp' }
-];
-let aiEditEnabled = false;
-let aiEditThemeIdx = 0;
-let aiEditPollInterval = null;
-
-// ---- AMBIENT FX ----
 function initBgFx(){
-  const field = document.getElementById('sparkleField');
-  if(field){
-    const n = 26;
-    for(let i=0;i<n;i++){
-      const s = document.createElement('div');
-      s.className = 'spark';
-      if(i % 5 === 0) s.classList.add('spark-rose');
-      else if(i % 7 === 0) s.classList.add('spark-gold2');
-      const size = 2 + Math.random()*4;
-      s.style.width = size+'px';
-      s.style.height = size+'px';
-      s.style.left = Math.random()*100+'%';
-      s.style.top = (8 + Math.random()*92)+'%';
-      s.style.animationDuration = (9 + Math.random()*12)+'s';
-      s.style.animationDelay = (-Math.random()*22)+'s';
-      field.appendChild(s);
-    }
-  }
-
   let ticking = false;
   window.addEventListener('scroll', () => {
     if(ticking) return;
@@ -794,14 +327,11 @@ function initBgFx(){
     });
   }, {passive:true});
 }
-
-// ---- LANDING: package previews ----
 const PKG_PREVIEWS = [
   { name:'Quick Shot', desc:'One full-resolution photo, your pick from tonight.', price:'$10', img:'https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260613_005538_be580b13-e2b5-4009-a425-a12c797e7f89.png' },
   { name:'The Bundle', desc:'Up to 8 edited photos from tonight — your whole night, curated.', price:'$30', img:'https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260613_010304_ca7ed54c-53ee-4a4f-9b64-3e8d76036eff.png' },
   { name:'Full Night', desc:'Every photo + a reel — the full story, edited and ready to post.', price:'$60', img:'https://d8j0ntlcm91z4.cloudfront.net/user_38UuuwPAyCC1aFyPsNUyccdEuZD/hf_20260613_010309_5bf0f52c-7833-404d-8344-2c6338e26eac.png' }
 ];
-
 function openPreview(idx){
   const p = PKG_PREVIEWS[idx];
   if(!p) return;
@@ -809,37 +339,24 @@ function openPreview(idx){
   const img = document.getElementById('lightboxImg');
   img.style.display = 'none';
   img.src = p.img;
-  img.alt = p.name + ' preview';
   img.onload = () => { document.getElementById('lightboxLoader').classList.remove('show'); img.style.display = ''; };
-  img.onerror = () => { document.getElementById('lightboxLoader').classList.remove('show'); img.style.display = ''; };
   document.getElementById('lightboxName').textContent = p.name;
   document.getElementById('lightboxDesc').textContent = p.desc;
   document.getElementById('lightboxPrice').textContent = p.price;
   document.getElementById('lightbox').classList.add('show');
 }
-
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('show');
-}
-
-// ---- GALLERY: full-screen preview ----
-function openGalleryPreview(idx){
-  const item = galleryItems[idx];
-  if(!item) return;
+function closeLightbox(){ document.getElementById('lightbox').classList.remove('show'); }
+function openGalleryPreview(item){
   document.getElementById('lightboxLoader').classList.add('show');
   const img = document.getElementById('lightboxImg');
   img.style.display = 'none';
-  img.src = item.previewUrl;
-  img.alt = item.name;
+  img.src = item.fullUrl;
   img.onload = () => { document.getElementById('lightboxLoader').classList.remove('show'); img.style.display = ''; };
-  img.onerror = () => { document.getElementById('lightboxLoader').classList.remove('show'); img.style.display = ''; };
-  document.getElementById('lightboxName').textContent = item.type === 'video' ? 'Reel preview (poster frame)' : '';
+  document.getElementById('lightboxName').textContent = item.type === 'video' ? 'Reel (poster frame)' : '';
   document.getElementById('lightboxDesc').textContent = '';
   document.getElementById('lightboxPrice').textContent = '';
   document.getElementById('lightbox').classList.add('show');
 }
-
-// ---- LANDING: code entry ----
 function goToCode(){
   const v = document.getElementById('codeInput').value.trim().toUpperCase();
   if(!v) return;
@@ -847,131 +364,77 @@ function goToCode(){
   history.replaceState(null, '', url);
   location.reload();
 }
-
-// ---- SCROLL REVEAL ----
 function initReveal(){
   const els = document.querySelectorAll('.reveal');
   const check = () => {
-    let allDone = true;
     els.forEach(el => {
       if(el.classList.contains('visible')) return;
       const r = el.getBoundingClientRect();
       if(r.top < window.innerHeight * 0.85) el.classList.add('visible');
-      else allDone = false;
     });
-    if(allDone) window.removeEventListener('scroll', check);
   };
   check();
   window.addEventListener('scroll', check, {passive:true});
 }
-
-// ---- BOOT ----
 async function boot(){
   initBgFx();
-
   const params = new URLSearchParams(location.search);
   const code = (params.get('s') || '').toUpperCase().trim();
-
   document.getElementById('loadingCard').style.display = 'block';
-
   if(!code){
     document.getElementById('loadingCard').style.display = 'none';
     document.getElementById('landingCard').style.display = 'block';
-    document.getElementById('landingQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=8&data=${encodeURIComponent('https://cash.app/$'+CASHTAG)}`;
     initReveal();
     return;
   }
-
   const { data, error } = await sb.from('visuals_sessions').select('*').eq('code', code).maybeSingle();
-
   if(error || !data){
     document.getElementById('loadingCard').style.display = 'none';
     document.getElementById('notFoundCard').style.display = 'block';
     initReveal();
     return;
   }
-
   session = data;
-  if(session.label){
-    document.getElementById('sessionLabelTag').textContent = session.label;
-  }
-
+  if(session.label){ document.getElementById('sessionLabelTag').textContent = session.label; }
   await loadGallery();
   document.getElementById('loadingCard').style.display = 'none';
   await showPrepReveal();
-
   const flow = document.getElementById('mainFlow');
   flow.style.display = 'block';
   requestAnimationFrame(() => flow.classList.add('show'));
-
-  renderAiEditThemes();
-  renderThemeChips();
-  populateAiEditPhotoOptions();
   updateTotal();
   initReveal();
-  initAiPreviewSlider();
-  initAiModalSlider();
-  renderAiModalThemes();
   startGalleryPolling();
-
-  if(session.paid){
-    unlockDownload();
-  } else if(session.payment_requested){
-    document.getElementById('paidBtn').disabled = true;
-    document.getElementById('paidBtn').textContent = 'Waiting for confirmation…';
-    document.getElementById('payPending').style.display = 'block';
-    document.getElementById('payHelp').style.display = 'none';
-    startPaymentPoll();
-  }
-
-  initAiEditStatus();
+  if(session.paid){ unlockDownload(); }
 }
-
-// ---- ANTICIPATION REVEAL ----
 function showPrepReveal(){
   return new Promise(resolve => {
     const prep = document.getElementById('prepCard');
     const sub = document.getElementById('prepSub');
     const n = galleryItems.length;
-    sub.textContent = n > 0
-      ? `${n} ${n === 1 ? 'shot' : 'shots'} from tonight`
-      : 'Your photographer is still uploading';
-
+    sub.textContent = n > 0 ? `${n} ${n === 1 ? 'shot' : 'shots'} from tonight` : 'Your photographer is still uploading';
     prep.style.display = 'block';
     requestAnimationFrame(() => prep.classList.add('visible'));
-
     setTimeout(() => {
       prep.classList.remove('visible');
-      setTimeout(() => {
-        prep.style.display = 'none';
-        resolve();
-      }, 500);
+      setTimeout(() => { prep.style.display = 'none'; resolve(); }, 500);
     }, 1300);
   });
 }
-
-// ---- GALLERY ----
 async function loadGallery(){
   const { data, error } = await sb.storage.from(BUCKET).list(`${session.code}/full`, {limit:200, sortBy:{column:'created_at', order:'desc'}});
   const grid = document.getElementById('galleryGrid');
-  const empty = document.getElementById('galleryEmpty');
   const count = document.getElementById('galleryCount');
-  const actions = document.getElementById('galleryActions');
-  const polling = document.getElementById('galleryPolling');
+  const emptyMsg = document.getElementById('galleryEmpty');
   const hint = document.getElementById('galleryHint');
-  const previewCard = document.getElementById('aiPreviewCard');
-
   if(error || !data || data.length === 0 || (data.length===1 && data[0].name==='.emptyFolderPlaceholder')){
     grid.style.display = 'none';
     count.style.display = 'none';
-    actions.style.display = 'none';
-    hint.classList.remove('show');
-    empty.style.display = 'block';
-    polling.classList.add('show');
-    previewCard.style.display = 'none';
+    hint.style.display = 'none';
+    emptyMsg.style.display = 'block';
     return;
   }
-
+  emptyMsg.style.display = 'none';
   galleryItems = data
     .filter(f => f.name !== '.emptyFolderPlaceholder')
     .map(f => {
@@ -985,53 +448,23 @@ async function loadGallery(){
         selected: false
       };
     });
-
-  empty.style.display = 'none';
-  polling.classList.remove('show');
   grid.style.display = 'grid';
   count.style.display = 'block';
-  actions.style.display = 'flex';
-  updateGalleryHint();
+  hint.style.display = 'block';
   renderGallery();
-
-  // Show AI preview card (Touch 1) once gallery has content
-  if(galleryItems.length > 0 && !session.paid){
-    previewCard.style.display = 'block';
-  }
 }
-
 function startGalleryPolling(){
   if(galleryPollInterval) return;
   galleryPollInterval = setInterval(async () => {
-    if(session && session.paid) { clearInterval(galleryPollInterval); galleryPollInterval = null; return; }
+    if(session && session.paid) { clearInterval(galleryPollInterval); return; }
     const { data, error } = await sb.storage.from(BUCKET).list(`${session.code}/full`, {limit:200, sortBy:{column:'created_at', order:'desc'}});
     if(error || !data) return;
     const newItems = data.filter(f => f.name !== '.emptyFolderPlaceholder');
     const currentNames = galleryItems.map(i => i.name);
     const hasNew = newItems.some(f => !currentNames.includes(f.name));
-    if(hasNew){
-      await loadGallery();
-      updateTotal();
-    }
-    document.getElementById('galleryPolling').classList.toggle('show', galleryItems.length === 0);
+    if(hasNew){ await loadGallery(); updateTotal(); }
   }, 15000);
 }
-
-function updateGalleryHint(){
-  const hint = document.getElementById('galleryHint');
-  const pkg = document.querySelector('.pkg.active');
-  const max = pkg ? parseInt(pkg.dataset.max, 10) : 999;
-  if(max === 1){
-    hint.textContent = 'Quick Shot includes 1 photo — tap to pick your favorite.';
-    hint.classList.add('show');
-  } else if(max === 8){
-    hint.textContent = 'The Bundle includes up to 8 photos.';
-    hint.classList.add('show');
-  } else {
-    hint.classList.remove('show');
-  }
-}
-
 function selectAllPhotos(){
   const pkg = document.querySelector('.pkg.active');
   const max = pkg ? parseInt(pkg.dataset.max, 10) : 999;
@@ -1042,12 +475,10 @@ function selectAllPhotos(){
   });
   renderGallery();
 }
-
 function deselectAllPhotos(){
   galleryItems.forEach(item => item.selected = false);
   renderGallery();
 }
-
 function renderGallery(){
   const grid = document.getElementById('galleryGrid');
   const count = document.getElementById('galleryCount');
@@ -1060,308 +491,131 @@ function renderGallery(){
       const pkg = document.querySelector('.pkg.active');
       const max = pkg ? parseInt(pkg.dataset.max, 10) : 999;
       if(!item.selected && galleryItems.filter(f=>f.selected).length >= max){
-        // Enforce package cap: if trying to select beyond limit, deselect first item
         const firstSelected = galleryItems.find(f => f.selected);
         if(firstSelected) firstSelected.selected = false;
       }
       item.selected = !item.selected;
       renderGallery();
     };
-
     const img = document.createElement('img');
     img.src = item.previewUrl;
-    img.loading = 'lazy';
-    img.onerror = () => {
-      img.remove();
-      const ph = document.createElement('div');
-      ph.className = 'gallery-placeholder';
-      ph.textContent = item.type === 'video' ? '🎬' : '📷';
-      ph.onclick = (e) => { e.stopPropagation(); div.click(); };
-      ph.style.cursor = 'pointer';
-      div.insertBefore(ph, div.firstChild);
-    };
     div.appendChild(img);
-
     if(item.type === 'video'){
       const tag = document.createElement('div');
       tag.className = 'gallery-tag';
       tag.textContent = 'REEL';
       div.appendChild(tag);
     }
-
     const expand = document.createElement('div');
     expand.className = 'gallery-expand';
     expand.textContent = '⤢';
-    expand.title = 'View full screen';
-    expand.onclick = (e) => { e.stopPropagation(); openGalleryPreview(idx); };
+    expand.onclick = (e) => { e.stopPropagation(); openGalleryPreview(item); };
     div.appendChild(expand);
-
     const check = document.createElement('div');
     check.className = 'gallery-check';
     check.textContent = '✓';
     div.appendChild(check);
-
     grid.appendChild(div);
   });
-
   const selectedCount = galleryItems.filter(f => f.selected).length;
   count.innerHTML = `<strong>${selectedCount}</strong> of ${galleryItems.length} selected`;
 }
-
-// ---- PACKAGES ----
 function selectPkg(el){
   document.querySelectorAll('.pkg').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
   currentPrice = parseInt(el.dataset.price, 10);
   currentName = el.dataset.name;
   currentMax = parseInt(el.dataset.max, 10);
-  updateGalleryHint();
-
-  // Enforce package selection cap
   const selected = galleryItems.filter(f => f.selected);
   if(selected.length > currentMax){
-    // Keep only the first `currentMax` selections
     let keep = 0;
     galleryItems.forEach(item => {
-      if(item.selected){
-        if(keep < currentMax){ keep++; }
-        else { item.selected = false; }
-      }
+      if(item.selected){ if(keep < currentMax){ keep++; } else { item.selected = false; } }
     });
     renderGallery();
   }
   updateTotal();
 }
-
-// ---- AI-ENHANCED EDIT ADD-ON ----
-function renderAiEditThemes(){
-  const wrap = document.getElementById('aiEditThemes');
-  if(!wrap) return;
-  wrap.innerHTML = '';
-  AI_EDIT_THEMES.forEach((theme, idx) => {
-    const div = document.createElement('div');
-    div.className = 'ai-edit-theme' + (idx === aiEditThemeIdx ? ' active' : '');
-    div.onclick = (e) => { e.stopPropagation(); selectAiEditTheme(idx); };
-    div.innerHTML = `
-      ${theme.img ? `<img class="ai-edit-theme-thumb" src="${theme.img}" alt="${theme.name}" loading="lazy">` : ''}
-      <div style="flex:1;min-width:0">
-        <div class="ai-edit-theme-name">${theme.name}</div>
-        <div class="ai-edit-theme-desc">${theme.desc}</div>
-      </div>
-      <div class="ai-edit-theme-radio" style="flex-shrink:0"></div>`;
-    wrap.appendChild(div);
-  });
-}
-
-function renderThemeChips(){
-  const wrap = document.getElementById('themeChips');
-  if(!wrap) return;
-  wrap.innerHTML = '';
-  AI_EDIT_THEMES.forEach((theme, idx) => {
-    const chip = document.createElement('div');
-    chip.className = 'theme-chip' + (idx === aiEditThemeIdx ? ' selected' : '');
-    chip.title = theme.name;
-    chip.onclick = (e) => { e.stopPropagation(); selectAiEditTheme(idx); };
-    chip.innerHTML = `<img src="${theme.img}" alt="${theme.name}" loading="lazy">`;
-    wrap.appendChild(chip);
-    const label = document.createElement('div');
-    label.className = 'theme-chip-label';
-    label.textContent = theme.name.split(' ')[0];
-    wrap.appendChild(label);
-    // Wrap chip + label
-    const container = document.createElement('div');
-    container.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0';
-    wrap.replaceChild(container, chip);
-    container.appendChild(chip);
-    container.appendChild(label);
-  });
-}
-
-function selectAiEditTheme(idx){
-  aiEditThemeIdx = idx;
-  document.querySelectorAll('.ai-edit-theme').forEach((el, i) => el.classList.toggle('active', i === idx));
-  document.querySelectorAll('.theme-chip').forEach((el, i) => el.classList.toggle('selected', i === idx));
-  updateTotal();
-}
-
-function toggleAiEdit(){
-  if(galleryItems.length === 0) return;
-  aiEditEnabled = !aiEditEnabled;
-  document.getElementById('aiEditToggle').classList.toggle('active', aiEditEnabled);
-  document.getElementById('aiEditOptions').style.display = aiEditEnabled ? 'block' : 'none';
-  if(aiEditEnabled){
-    document.getElementById('aiEditToggle').classList.remove('first-seen');
-  }
-  updateTotal();
-}
-
-function populateAiEditPhotoOptions(){
-  const select = document.getElementById('aiEditPhoto');
-  const toggle = document.getElementById('aiEditToggle');
-  if(!select || !toggle) return;
-  select.innerHTML = '';
-
-  if(galleryItems.length === 0){
-    toggle.style.opacity = '0.5';
-    toggle.style.pointerEvents = 'none';
-    toggle.title = 'AI Edit needs at least one uploaded photo — your photographer hasn\'t uploaded any yet.';
-    return;
-  }
-
-  toggle.style.opacity = '';
-  toggle.style.pointerEvents = '';
-  toggle.title = '';
-  toggle.classList.add('first-seen');
-  galleryItems.forEach((item, idx) => {
-    const opt = document.createElement('option');
-    opt.value = item.name;
-    opt.textContent = item.type === 'video' ? `Reel ${idx+1} (poster frame)` : `Photo ${idx+1}`;
-    select.appendChild(opt);
-  });
-}
-
-function getTotal(){
-  return currentPrice + (aiEditEnabled ? AI_EDIT_THEMES[aiEditThemeIdx].price : 0);
-}
-
 function updateTotal(){
   const totalEl = document.getElementById('totalAmt');
-  totalEl.textContent = '$' + getTotal();
+  totalEl.textContent = '$' + currentPrice;
   totalEl.classList.remove('bump');
   void totalEl.offsetWidth;
   totalEl.classList.add('bump');
   setTimeout(() => totalEl.classList.remove('bump'), 400);
   updatePayment();
 }
-
-// ---- PAYMENT ----
 function updatePayment(){
-  const cashUrl = `https://cash.app/$${CASHTAG}/${getTotal()}`;
+  const cashUrl = `https://cash.app/$${CASHTAG}/${currentPrice}`;
   document.getElementById('payLink').href = cashUrl;
   document.getElementById('qrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=8&data=${encodeURIComponent(cashUrl)}`;
 }
-
-// ---- CONFIRM & DOWNLOAD ----
 let paymentPollInterval = null;
-let paymentTimeoutTimer = null;
-
+let paymentPollStart = null;
 async function requestPaymentConfirmation(){
   if(!session) return;
   const btn = document.getElementById('paidBtn');
   btn.disabled = true;
   btn.textContent = 'Letting them know…';
-
   const rpcParams = {
     p_code: session.code,
     p_package_name: currentName,
     p_package_price: currentPrice
   };
-
-  if(aiEditEnabled){
-    const theme = AI_EDIT_THEMES[aiEditThemeIdx];
-    const photoSelect = document.getElementById('aiEditPhoto');
-    rpcParams.p_ai_edit_theme = theme.name;
-    rpcParams.p_ai_edit_photo = photoSelect ? photoSelect.value : null;
-    rpcParams.p_ai_edit_price = theme.price;
-  }
-
   const { error } = await sb.rpc('request_payment_confirmation', rpcParams);
-
   if(error){
     btn.disabled = false;
     btn.textContent = "I've sent payment via Cash App";
-    const errEl = document.getElementById('confirmErr');
-    if(errEl){ errEl.textContent = "Couldn't send — try again, or flag down your photographer."; errEl.style.display = 'block'; }
+    const errEl = document.getElementById('paymentError');
+    errEl.textContent = 'Could not reach the photographer. Check your connection and try again.';
+    errEl.style.display = 'block';
     return;
   }
-  const errEl = document.getElementById('confirmErr');
-  if(errEl) errEl.style.display = 'none';
-
+  document.getElementById('paymentError').style.display = 'none';
   btn.textContent = 'Waiting for confirmation…';
-  document.getElementById('payPending').style.display = 'block';
-  document.getElementById('payHelp').style.display = 'none';
-  document.getElementById('paymentTimeoutMsg').classList.remove('show');
+  paymentPollStart = Date.now();
   startPaymentPoll();
 }
-
 function startPaymentPoll(){
   if(paymentPollInterval) return;
-  const pollStart = Date.now();
-  document.getElementById('paymentTimeoutMsg').classList.remove('show');
-
   paymentPollInterval = setInterval(async () => {
+    const elapsed = Date.now() - paymentPollStart;
+    if(elapsed > 300000){
+      clearInterval(paymentPollInterval);
+      paymentPollInterval = null;
+      const btn = document.getElementById('paidBtn');
+      btn.disabled = false;
+      btn.textContent = "Photographer didn't confirm yet. Ask them directly.";
+      const errEl = document.getElementById('paymentError');
+      errEl.textContent = "Still waiting? Tap the button again to resend, or message your photographer on Instagram.";
+      errEl.style.display = 'block';
+      return;
+    }
     const { data, error } = await sb.from('visuals_sessions').select('paid').eq('code', session.code).maybeSingle();
     if(!error && data && data.paid){
       clearInterval(paymentPollInterval);
       paymentPollInterval = null;
-      clearTimeout(paymentTimeoutTimer);
-      document.getElementById('paymentTimeoutMsg').classList.remove('show');
       unlockDownload();
-      return;
-    }
-    // Show fallback message after 2 minutes
-    if(Date.now() - pollStart > 120000 && !document.getElementById('paymentTimeoutMsg').classList.contains('show')){
-      document.getElementById('paymentTimeoutMsg').classList.add('show');
     }
   }, 6000);
-
-  paymentTimeoutTimer = setTimeout(() => {
-    if(!document.getElementById('paymentTimeoutMsg').classList.contains('show')){
-      document.getElementById('paymentTimeoutMsg').classList.add('show');
-    }
-  }, 120000);
 }
-
-function cancelPaymentRequest(){
-  clearInterval(paymentPollInterval);
-  paymentPollInterval = null;
-  clearTimeout(paymentTimeoutTimer);
-  document.getElementById('payPending').style.display = 'none';
-  document.getElementById('paymentTimeoutMsg').classList.remove('show');
-  document.getElementById('payHelp').style.display = '';
-  const btn = document.getElementById('paidBtn');
-  btn.disabled = false;
-  btn.textContent = "I've sent payment via Cash App";
-}
-
 function unlockDownload(){
-  document.getElementById('payPending').style.display = 'none';
-  document.getElementById('paymentTimeoutMsg').classList.remove('show');
   document.getElementById('payConfirmRow').style.display = 'none';
-  document.getElementById('payHelp').style.display = 'none';
   const btn = document.getElementById('downloadBtn');
-
   const selected = galleryItems.filter(f => f.selected);
   const files = selected.length ? selected : galleryItems;
-  const photos = files.filter(f => f.type !== 'video').length;
-  const reels = files.filter(f => f.type === 'video').length;
-  const parts = [];
-  if(photos) parts.push(photos + (photos === 1 ? ' Photo' : ' Photos'));
-  if(reels) parts.push(reels + (reels === 1 ? ' Reel' : ' Reels'));
-  btn.textContent = parts.length ? 'Download ' + parts.join(' + ') : 'Download Your Content';
-
+  btn.textContent = 'Download Your Content';
   btn.style.display = 'block';
   btn.disabled = false;
-  btn.classList.add('unlocked');
-  setTimeout(() => btn.classList.remove('unlocked'), 1150);
 }
-
 async function downloadSelected(){
   const selected = galleryItems.filter(f => f.selected);
   const files = selected.length ? selected : galleryItems;
-
-  if(files.length === 0){
-    const errEl = document.getElementById('confirmErr');
-    if(errEl){ errEl.textContent = "No content has been uploaded yet — check back shortly."; errEl.style.display = 'block'; }
-    return;
-  }
-
+  if(files.length === 0) return;
   const progress = document.getElementById('downloadProgress');
   const btn = document.getElementById('downloadBtn');
   btn.disabled = true;
   progress.classList.add('show');
-  progress.textContent = `Preparing your download… (0 of ${files.length})`;
-
   if(files.length === 1){
     progress.textContent = 'Downloading…';
     const res = await fetch(files[0].fullUrl);
@@ -1389,185 +643,9 @@ async function downloadSelected(){
     a.click();
     a.remove();
   }
-
   progress.classList.remove('show');
-  btn.disabled = false;
   document.getElementById('deliveryMsg').classList.add('show');
-  document.getElementById('circleNudge').classList.add('show');
 }
-
-// ---- AI-ENHANCED EDIT: PENDING / RESULT ----
-let aiEditResultItem = null;
-
-async function initAiEditStatus(){
-  if(!session || !session.ai_edit_requested) return;
-  if(session.ai_edit_delivered){
-    await loadAiEditResult();
-  } else {
-    document.getElementById('aiEditPending').classList.add('show');
-    pollAiEditStatus();
-  }
-}
-
-async function loadAiEditResult(){
-  const { data, error } = await sb.storage.from(BUCKET).list(`${session.code}/ai`, {limit:10, sortBy:{column:'created_at', order:'desc'}});
-  if(error || !data || data.length === 0) return;
-  const file = data.find(f => f.name !== '.emptyFolderPlaceholder');
-  if(!file) return;
-  const { data: pub } = sb.storage.from(BUCKET).getPublicUrl(`${session.code}/ai/${file.name}`);
-  aiEditResultItem = { name: file.name, url: pub.publicUrl };
-  document.getElementById('aiEditPending').classList.remove('show');
-  document.getElementById('aiEditResultImg').src = pub.publicUrl;
-  document.getElementById('aiEditResult').classList.add('show');
-}
-
-function pollAiEditStatus(){
-  if(aiEditPollInterval) return;
-  aiEditPollInterval = setInterval(async () => {
-    const { data, error } = await sb.from('visuals_sessions').select('ai_edit_delivered').eq('code', session.code).maybeSingle();
-    if(!error && data && data.ai_edit_delivered){
-      clearInterval(aiEditPollInterval);
-      aiEditPollInterval = null;
-      await loadAiEditResult();
-    }
-  }, 8000);
-}
-
-async function downloadAiEdit(){
-  if(!aiEditResultItem) return;
-  const res = await fetch(aiEditResultItem.url);
-  const blob = await res.blob();
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = aiEditResultItem.name || 'ATCHE-AI-Enhanced-Edit.jpg';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}
-
-// ---- AI EDIT TOUCH 1: Preview Card Slider ----
-function initAiPreviewSlider(){
-  const wrap = document.getElementById('aiPreviewBaWrap');
-  if(!wrap) return;
-  const after = document.getElementById('aiPreviewAfter');
-  const divider = document.getElementById('aiPreviewDivider');
-  const handle = document.getElementById('aiPreviewHandle');
-  let dragging = false;
-
-  function setPos(pct){
-    pct = Math.max(5, Math.min(95, pct));
-    after.style.clipPath = `inset(0 ${100-pct}% 0 0)`;
-    divider.style.left = pct + '%';
-    handle.style.left = pct + '%';
-  }
-  setPos(50);
-
-  function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
-
-  wrap.addEventListener('mousedown', () => dragging = true);
-  wrap.addEventListener('touchstart', () => dragging = true, {passive:true});
-  window.addEventListener('mouseup', () => dragging = false);
-  window.addEventListener('touchend', () => dragging = false);
-
-  function onMove(e){
-    if(!dragging) return;
-    const rect = wrap.getBoundingClientRect();
-    const pct = ((getX(e) - rect.left) / rect.width) * 100;
-    setPos(pct);
-  }
-  window.addEventListener('mousemove', onMove);
-  window.addEventListener('touchmove', onMove, {passive:true});
-}
-
-// ---- AI EDIT TOUCH 2: Full Modal ----
-let aiModalSliderInit = false;
-
-function initAiModalSlider(){
-  if(aiModalSliderInit) return;
-  aiModalSliderInit = true;
-  const wrap = document.getElementById('aiModalBaWrap');
-  if(!wrap) return;
-  const after = document.getElementById('aiModalAfter');
-  const divider = document.getElementById('aiModalDivider');
-  const handle = document.getElementById('aiModalHandle');
-  let dragging = false;
-
-  function setPos(pct){
-    pct = Math.max(5, Math.min(95, pct));
-    after.style.clipPath = `inset(0 ${100-pct}% 0 0)`;
-    divider.style.left = pct + '%';
-    handle.style.left = pct + '%';
-  }
-  setPos(50);
-
-  function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
-
-  wrap.addEventListener('mousedown', () => dragging = true);
-  wrap.addEventListener('touchstart', () => dragging = true, {passive:true});
-  window.addEventListener('mouseup', () => dragging = false);
-  window.addEventListener('touchend', () => dragging = false);
-
-  function onMove(e){
-    if(!dragging) return;
-    const rect = wrap.getBoundingClientRect();
-    const pct = ((getX(e) - rect.left) / rect.width) * 100;
-    setPos(pct);
-  }
-  window.addEventListener('mousemove', onMove);
-  window.addEventListener('touchmove', onMove, {passive:true});
-}
-
-function renderAiModalThemes(){
-  const grid = document.getElementById('aiModalThemesGrid');
-  if(!grid) return;
-  grid.innerHTML = '';
-  AI_EDIT_THEMES.forEach((theme, idx) => {
-    const card = document.createElement('div');
-    card.className = 'ai-modal-theme-card';
-    card.innerHTML = `
-      <img src="${theme.img}" alt="${theme.name}" loading="lazy">
-      <div class="ai-modal-theme-card-overlay"></div>
-      <span class="ai-modal-theme-card-price">+$20</span>
-      <div class="ai-modal-theme-card-body">
-        <div class="ai-modal-theme-card-name">${theme.name}</div>
-        <div class="ai-modal-theme-card-desc">${theme.desc}</div>
-      </div>`;
-    card.onclick = () => addAiEditFromModal(idx);
-    grid.appendChild(card);
-  });
-}
-
-function openAiEditModal(){
-  document.getElementById('aiModalOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeAiEditModal(event){
-  if(event && event.target !== document.getElementById('aiModalOverlay')) return;
-  document.getElementById('aiModalOverlay').classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-function addAiEditFromModal(themeIdx){
-  if(typeof themeIdx === 'number'){
-    aiEditThemeIdx = themeIdx;
-    document.querySelectorAll('.ai-edit-theme').forEach((el, i) => el.classList.toggle('active', i === themeIdx));
-    document.querySelectorAll('.theme-chip').forEach((el, i) => el.classList.toggle('selected', i === themeIdx));
-  }
-  if(!aiEditEnabled){
-    toggleAiEdit();
-  }
-  renderAiEditThemes();
-  renderThemeChips();
-  updateTotal();
-  closeAiEditModal();
-
-  // Scroll to the toggle
-  requestAnimationFrame(() => {
-    document.getElementById('aiEditToggle').scrollIntoView({behavior:'smooth', block:'center'});
-  });
-}
-
 boot();
 </script>
 </body>
